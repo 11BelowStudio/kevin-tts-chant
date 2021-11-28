@@ -2,14 +2,12 @@ package packij;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
@@ -65,7 +63,7 @@ public class KevinChanter implements AutoCloseable
         KEVIN_SAY_ONCE,
         KEVIN16_SAY_ONCE,
         RANDOM_SAY_ONCE
-    };
+    }
 
     private final KEVIN_SPEECH_TYPE_ENUM[] kevin_speech_types = KEVIN_SPEECH_TYPE_ENUM.values();
     private final int kevin_speech_types_len = kevin_speech_types.length;
@@ -99,7 +97,7 @@ public class KevinChanter implements AutoCloseable
             "Kevin is number 1", "Kevin it to win it!", "Kevin great!", "KEVIN.\nTAP TO EDIT TEXT.", "Vote for Kevin!"
     };
 
-    private final int other_len = other_ways_of_saying_kevin.length;;
+    private final int other_len = other_ways_of_saying_kevin.length;
 
 
     /**
@@ -375,26 +373,6 @@ public class KevinChanter implements AutoCloseable
         return sayDifferentThings(sayThis, sayThis);
     }
 
-
-    private void one_voice_say_twice_at_once(String word){
-
-        try {
-            CyclicBarrier cb = new CyclicBarrier(3);
-            Thread t1 = SYNCHRONIZED_VOICE_THREAD_FACTORY(cb, kevin16s[0], word, 0);
-            Thread t2 = SYNCHRONIZED_VOICE_THREAD_FACTORY(cb, kevin16s[1], word, 200L);
-            Thread t3 = SYNCHRONIZED_VOICE_THREAD_FACTORY(cb, kevin16s[2], word, 400L);
-
-            t1.start();
-            t2.start();
-            t3.start();
-            t1.join();
-            t2.join();
-            t3.join();
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-    }
-
     private final ChantControlStopperLoggerInterface control;
 
     KevinChanter(ChantControlStopperLoggerInterface control){
@@ -403,7 +381,6 @@ public class KevinChanter implements AutoCloseable
         for(Voice v: voices){
             System.out.println(v.getName());
         }
-
         if (kevin != null)
         {
             //the Voice class allocate() method allocates this voice
@@ -413,58 +390,6 @@ public class KevinChanter implements AutoCloseable
             kevin16.allocate();
         }
     }
-
-    private void testSpeaking(){
-        try
-        {
-            //sets the rate (words per minute i.e. 190) of the speech
-            //kevin.setRate(190);
-            //sets the baseline pitch (150) in hertz
-            //kevin.setPitch(150);
-            //sets the volume (10) of the voice
-            //kevin.setVolume(10);
-            //the speak() method speaks the specified text
-            //kevin.speak("Don't limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve.");
-            //kevin16.speak("Don't limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve.");
-            kevin.speak("kevin");
-
-            kevin16.speak("kevin");
-
-            sayTwice("kevin");
-
-            sayTwice("Kevin Kevin");
-
-            sayTwice("We love Kevin a lot we truly do he is the best person to ever exist");
-
-            sayTwice("Kevin is love, Kevin is life");
-
-            sayTwice("keeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevin");
-
-            sayTwice("k e v i n");
-
-            sayTwice("k. e. v. i. n.");
-
-            sayDifferentThings("I love Kevin","I adore Kevin");
-
-            sayDifferentThings("Kevin Kevin Kevin Kevin","All hail Kevin");
-
-
-            kevin.speak("What's your favourite thing about Kevin?");
-            kevin16.speak("Well, everything about Kevin is my favourite thing about Kevin! What about you?");
-            kevin.speak("I agree. After all, he's Kevin!");
-            kevin16.speak("Kevin was doing my dad last night");
-            kevin.speak("I am honestly jealous.");
-
-            //alan.speak("alan");
-
-            //kevin16.speak("kevin16");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
 
 
     public static void main(String[] args)
@@ -478,7 +403,6 @@ public class KevinChanter implements AutoCloseable
         theFrame.setVisible(true);
 
         /*
-
         for (String s: args) {
             System.out.println(s);
         }
@@ -541,13 +465,16 @@ interface ChantControlStopperLoggerInterface{
 
     default boolean keepGoing(){
         return true;
-    };
+    }
 
     default void logInfo(String infoToLog){
         System.out.println(infoToLog);
-    };
+    }
 }
 
+/**
+ * A totes legit GUI for controlling this stuff
+ */
 class ChantControlPanel implements ChantControlStopperLoggerInterface {
 
     private boolean keepGoing = true;
@@ -627,15 +554,11 @@ class ChantControlPanel implements ChantControlStopperLoggerInterface {
         );
 
 
-        //final JPanel innerLogPanel = new JPanel(new BorderLayout());
-        //logPanel.add(textArea);
-        //scrollPane.add(innerLogPanel);
         logPanel.add(scrollPane);
 
         contentPane.add(logPanel);
 
         kc = new KevinChanter(this);
-
 
 
         theFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -749,9 +672,7 @@ class ChantControlPanel implements ChantControlStopperLoggerInterface {
                     () -> {
 
                         Thread kc_thread = new Thread(
-                                () -> {
-                                    kc.handle_saying_kevin_x_times(times);
-                                }
+                                () -> kc.handle_saying_kevin_x_times(times)
                         );
                         kc_thread.start();
                         try {
