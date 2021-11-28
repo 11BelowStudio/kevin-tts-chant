@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact name="KevinTTSChant_a:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KevinTTSChant_a_jar</output-path>
+    <root id="root">
+      <element id="archive" name="kevin tts chant.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="kevin tts chant" />
+      </element>
+      <element id="library" level="project" name="jsapi" />
+      <element id="library" level="project" name="cmu_us_kal" />
+      <element id="library" level="project" name="freetts" />
+      <element id="library" level="project" name="cmutimelex" />
+      <element id="library" level="project" name="cmulex" />
+      <element id="library" level="project" name="mbrola" />
+      <element id="library" level="project" name="cmu_time_awb" />
+      <element id="library" level="project" name="en_us" />
+      <element id="library" level="project" name="freetts-jsapi10" />
+    </root>
+  </artifact>
+</component>

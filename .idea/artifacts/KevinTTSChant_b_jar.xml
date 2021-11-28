@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KevinTTSChant_b:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KevinTTSChant_b_jar</output-path>
+    <root id="archive" name="kevin tts chant.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/KevinTTSChant_b_jar/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="kevin tts chant" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/jsapi.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/cmu_us_kal.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/freetts.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/cmutimelex.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/cmulex.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/mbrola.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/cmu_time_awb.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/en_us.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/freetts/freetts-jsapi10.jar" path-in-jar="/" />
+      <element id="artifact" artifact-name="KevinTTSChant_a:jar" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: packij.KevinChanter
+Class-Path: jsapi.jar cmu_us_kal.jar freetts.jar cmutimelex.jar cmulex.j
+ ar mbrola.jar cmu_time_awb.jar en_us.jar freetts-jsapi10.jar
+
